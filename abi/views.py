@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 
 
 def index(request):
@@ -22,3 +22,19 @@ def first_page(request, name, place):
 
 def second_page(requests, santa='undefined', place='antarctic'):
     return HttpResponse(f'Santa say: {santa} and fly to the {place}')
+
+
+def json_example(request):
+    return JsonResponse({'USD': 2.60, 'EUR': 2.80})
+
+
+def set_cookie(request):
+    username = request.GET.get('username', 'undefined')
+    response = HttpResponse(f'Hi, {username}')
+    response.set_cookie('username', username)
+    return response
+
+
+def get_cookie(request):
+    username = request.COOKIES['username']
+    return HttpResponse(f'Hi, {username}')

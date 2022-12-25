@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, re_path, include
 
 from abi import views
+from abi.views import json_example
 
 other_patterns = [
     re_path(r'^first_page', views.first_page, kwargs={'name': 'John Wick', 'place': 'Continental'}),
@@ -30,4 +31,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
     path('other/', include(other_patterns)),
+    path('rate', json_example),
+    path('set_cookie', views.set_cookie),
+    path('get_cookie', views.get_cookie),
 ]
